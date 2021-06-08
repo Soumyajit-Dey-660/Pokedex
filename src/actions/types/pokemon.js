@@ -1,0 +1,3 @@
+export const START_LOADING = 'START_LOADING';
+export const END_LOADING = 'END_LOADING';
+export const FETCH_POKEMON_ON_LOAD = 'FETCH_POKEMON_ON_LOAD';
