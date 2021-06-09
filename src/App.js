@@ -2,7 +2,7 @@ import React from 'react';
 import { Container } from '@material-ui/core';
 import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
 import Pokedex from './components/Pokedex/Pokedex';
-import Pokemon from './components/Pokemon/Pokemon';
+import PokemonDetails from './components/PokemonDetails/PokemonDetails';
 import Navbar from './components/Navbar/Navbar';
 
 
@@ -14,7 +14,7 @@ const App = () => {
         <Switch>
           <Route exact path='/' component={() => <Redirect to='/pokedex' />} />
           <Route exact path='/pokedex' component={Pokedex} />
-          <Route exact path='/pokemon/:pokemonId' component={Pokemon} />
+          <Route exact path='/pokemon/:pokemonId' component={PokemonDetails} />
         </Switch>
       </Container>
     </Router>
