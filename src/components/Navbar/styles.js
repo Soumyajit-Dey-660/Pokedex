@@ -14,12 +14,18 @@ export default makeStyles((theme) => ({
         padding: '10px 10px',
         width: '100%',
     },
+    toolbar: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
     menuButton: {
         marginRight: theme.spacing(2),
     },
     title: {
         flexGrow: 1,
         display: 'none',
+        cursor: 'pointer',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },

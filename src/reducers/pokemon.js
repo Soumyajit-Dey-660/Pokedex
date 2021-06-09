@@ -2,7 +2,7 @@ import { START_LOADING, END_LOADING, FETCH_POKEMON_ON_LOAD } from '../actions/ty
 
 const initialState = {
     isLoading: false,
-    pokemons: []
+    pokemons: {}
 }
 
 export const pokemonReducer = (state = initialState, action) => {

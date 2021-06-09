@@ -1,4 +1,4 @@
 import axios from 'axios';
-import { URL } from '../constants/apiConstants';
+import { URL, POKEMONS_PER_PAGE } from '../constants/apiConstants';
 
-export const fetchPokemonOnLoad = () => axios.get(`${URL}/pokemon?limit=30&offset=0`);
+export const fetchPokemonOnLoad = page => axios.get(`${URL}/pokemon?limit=${POKEMONS_PER_PAGE}&offset=${(page-1)*POKEMONS_PER_PAGE}`)

@@ -4,6 +4,7 @@ import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-d
 import Pokedex from './components/Pokedex/Pokedex';
 import PokemonDetails from './components/PokemonDetails/PokemonDetails';
 import Navbar from './components/Navbar/Navbar';
+import Home from './components/Home/Home';
 
 
 const App = () => {
@@ -13,7 +14,7 @@ const App = () => {
         <Navbar />
         <Switch>
           <Route exact path='/' component={() => <Redirect to='/pokedex' />} />
-          <Route exact path='/pokedex' component={Pokedex} />
+          <Route exact path='/pokedex' component={Home} />
           <Route exact path='/pokemon/:pokemonId' component={PokemonDetails} />
         </Switch>
       </Container>
