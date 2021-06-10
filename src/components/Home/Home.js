@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { CircularProgress, Container, Paper, Grow } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { getPokemons } from '../../actions/creators/pokemon';
+import { getPokemons, getAllPokemons } from '../../actions/creators/pokemon';
 import Pokedex from '../Pokedex/Pokedex';
 import Pagination from '../Pagination/Pagination';
 import useStyles from './styles';
@@ -14,12 +14,17 @@ const useQuery = () => {
 const Home = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const { pokemons, isLoading } = useSelector(state => state.pokemon);
-    const spinnerInMiddle = { position: 'absolute', top: '50%', left: '50%' };
+    const { pokemons, isLoading, filteredPokemons } = useSelector(state => state.pokemon);
     const page = useQuery().get('page') || 1;
+    const spinnerInMiddle = { position: 'absolute', top: '50%', left: '50%' };
     useEffect(() => {
         if (page) dispatch(getPokemons(page));
     }, [page])
+
+    useEffect(() => {
+        // Get all the pokemon data for filtering..
+        dispatch(getAllPokemons())
+    }, [])
     if (!isLoading && Object.keys(pokemons).length === 0) return 'No Pokemons to display';
     return (
         <>
@@ -29,7 +34,10 @@ const Home = () => {
                     (
                         <Grow in>
                             <Container maxWidth='xl'>
-                                <Pokedex pokemons={pokemons} />
+                                {filteredPokemons?.results.length === 0 ?
+                                    <Pokedex pokemons={pokemons} /> :
+                                    <Pokedex pokemons={filteredPokemons} />
+                                }
                                 <Paper className={classes.pagination}>
                                     <Pagination page={page} />
                                 </Paper>

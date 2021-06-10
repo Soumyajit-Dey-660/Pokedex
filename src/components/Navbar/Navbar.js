@@ -1,13 +1,16 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, InputBase } from '@material-ui/core';
+import { AppBar, Toolbar, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getPokemonsBySearch } from '../../actions/creators/pokemon';
 import useStyles from './styles';
 import pokemonLogo from '../../images/pokemon_logo.png';
 
 const Navbar = () => {
     const classes = useStyles();
     const history = useHistory();
+    const dispatch = useDispatch();
     return (
         <div className={classes.root}>
             <AppBar position="static" className={classes.appbar}>
@@ -24,6 +27,7 @@ const Navbar = () => {
                                 input: classes.inputInput,
                             }}
                             inputProps={{ 'aria-label': 'search' }}
+                            onChange={event => dispatch(getPokemonsBySearch(event.target.value))}
                         />
                     </div>
                 </Toolbar>

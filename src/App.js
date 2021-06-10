@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 import { Route, Switch, Redirect, BrowserRouter as Router } from 'react-router-dom';
-import Pokedex from './components/Pokedex/Pokedex';
 import PokemonDetails from './components/PokemonDetails/PokemonDetails';
 import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
