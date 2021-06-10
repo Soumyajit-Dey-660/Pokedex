@@ -18,7 +18,7 @@ const Navbar = () => {
                             <SearchIcon />
                         </div>
                         <InputBase
-                            placeholder="Search..."
+                            placeholder="Pokemon..."
                             classes={{
                                 root: classes.inputRoot,
                                 input: classes.inputInput,

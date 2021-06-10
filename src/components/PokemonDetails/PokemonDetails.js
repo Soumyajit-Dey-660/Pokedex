@@ -5,7 +5,7 @@ const PokemonDetails = () => {
     const { pokemonId } = useParams();
     return (
         <div>
-            
+            Pokemon with id { pokemonId }
         </div>
     )
 }
