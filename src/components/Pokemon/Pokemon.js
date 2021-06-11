@@ -12,10 +12,12 @@ const Pokemon = ({ pokemon }) => {
     const openPokemonDetails = () => {
         history.push(`/pokemon/${pokemonId}`);
     }
+    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png
+    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png
     return (
         <Card className={classes.card} raised elevation={6}>
             <ButtonBase className={classes.cardAction} onClick={openPokemonDetails}>
-                <CardMedia className={classes.media} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png`} />
+                <CardMedia className={classes.media} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`} />
                 <Typography className={classes.title} variant="h5">{capitalize(pokemon.name)}</Typography>
             </ButtonBase>
         </Card>

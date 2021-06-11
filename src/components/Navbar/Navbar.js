@@ -1,4 +1,5 @@
 import React from 'react';
+import { debounce } from 'lodash';
 import { AppBar, Toolbar, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { useHistory } from 'react-router-dom';
@@ -11,6 +12,9 @@ const Navbar = () => {
     const classes = useStyles();
     const history = useHistory();
     const dispatch = useDispatch();
+    const handleChange = debounce(searchText => {
+        dispatch(getPokemonsBySearch(searchText));
+    }, 500);
     return (
         <div className={classes.root}>
             <AppBar position="static" className={classes.appbar}>
@@ -27,7 +31,7 @@ const Navbar = () => {
                                 input: classes.inputInput,
                             }}
                             inputProps={{ 'aria-label': 'search' }}
-                            onChange={event => dispatch(getPokemonsBySearch(event.target.value))}
+                            onChange={event => handleChange(event.target.value)}
                         />
                     </div>
                 </Toolbar>
