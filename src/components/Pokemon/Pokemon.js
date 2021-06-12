@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { Card, CardMedia, Typography, ButtonBase } from '@material-ui/core';
+import { IMAGE_URL } from '../../constants/apiConstants';
 import capitalize from '../../utils/capitalize';
 import useStyles from './styles';
 
@@ -12,12 +13,10 @@ const Pokemon = ({ pokemon }) => {
     const openPokemonDetails = () => {
         history.push(`/pokemon/${pokemonId}`);
     }
-    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png
-    // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png
     return (
         <Card className={classes.card} raised elevation={6}>
             <ButtonBase className={classes.cardAction} onClick={openPokemonDetails}>
-                <CardMedia className={classes.media} image={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`} />
+                <CardMedia className={classes.media} image={`${IMAGE_URL}/${pokemonId}.png`} />
                 <Typography className={classes.title} variant="h5">{capitalize(pokemon.name)}</Typography>
             </ButtonBase>
         </Card>

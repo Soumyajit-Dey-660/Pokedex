@@ -1,10 +1,11 @@
-import { START_LOADING, END_LOADING, FETCH_POKEMON_PAGE_WISE, FETCH_ALL_POKEMONS, FETCH_POKEMON_BY_SEARCH } from '../actions/types/pokemon';
+import { START_LOADING, END_LOADING, FETCH_POKEMON_PAGE_WISE, FETCH_ALL_POKEMONS, FETCH_POKEMON_BY_SEARCH, FETCH_CURRENT_POKEMON } from '../actions/types/pokemon';
 
 const initialState = {
     isLoading: false,
     allPokemons: {},
-    pokemons: {},
-    filteredPokemons: {results: []}
+    pokemonsPageWise: {},
+    filteredPokemons: {results: []},
+    currentPokemon: {}
 }
 
 export const pokemonReducer = (state = initialState, action) => {
@@ -22,7 +23,7 @@ export const pokemonReducer = (state = initialState, action) => {
         case FETCH_POKEMON_PAGE_WISE:
             return {
                 ...state,
-                pokemons: action.payload
+                pokemonsPageWise: action.payload
             }
         case FETCH_ALL_POKEMONS:
             return {
@@ -36,6 +37,11 @@ export const pokemonReducer = (state = initialState, action) => {
             return {
                 ...state,
                 filteredPokemons: {results: filtered}
+            }
+        case FETCH_CURRENT_POKEMON:
+            return {
+                ...state,
+                currentPokemon: action.payload
             }
         default: return state;
     }

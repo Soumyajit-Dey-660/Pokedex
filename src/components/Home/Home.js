@@ -14,7 +14,7 @@ const useQuery = () => {
 const Home = () => {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const { pokemons, isLoading, filteredPokemons } = useSelector(state => state.pokemon);
+    const { pokemonsPageWise, isLoading, filteredPokemons } = useSelector(state => state.pokemon);
     const page = useQuery().get('page') || 1;
     const spinnerInMiddle = { position: 'absolute', top: '50%', left: '50%' };
     useEffect(() => {
@@ -25,7 +25,7 @@ const Home = () => {
         // Get all the pokemon data for filtering..
         dispatch(getAllPokemons())
     }, [])
-    if (!isLoading && Object.keys(pokemons).length === 0) return 'No Pokemons to display';
+    if (!isLoading && Object.keys(pokemonsPageWise).length === 0) return 'No Pokemons to display';
     return (
         <>
             {
@@ -35,7 +35,7 @@ const Home = () => {
                         <Grow in>
                             <Container maxWidth='xl'>
                                 {filteredPokemons?.results.length === 0 ?
-                                    <Pokedex pokemons={pokemons} /> :
+                                    <Pokedex pokemons={pokemonsPageWise} /> :
                                     <Pokedex pokemons={filteredPokemons} />
                                 }
                                 <Paper className={classes.pagination}>
