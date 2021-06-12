@@ -55,7 +55,7 @@ const PokemonDetails = () => {
             typeComparison[0][weakness][1]['weakness'].forEach(weaknessType => allWeaknesses.indexOf(weaknessType) === -1 && allWeaknesses.push(weaknessType))
         });
         typeArr.forEach(strength => {
-            typeComparison[0][strength][0]['superEffective'].forEach(strengthType => allWeaknesses.indexOf(strengthType) === -1 && allStrengths.push(strengthType))
+            typeComparison[0][strength][0]['superEffective'].forEach(strengthType => allStrengths.indexOf(strengthType) === -1 && allStrengths.push(strengthType))
         });
         return [allWeaknesses, allStrengths];
     }
@@ -113,23 +113,27 @@ const PokemonDetails = () => {
                         <Divider style={{ margin: '20px 0' }} />
                         <div className={classes.description}>
                             <div className={classes.moves}>
+                                <Typography variant='h5' style={{ textAlign: 'center' }}>Fast Moves</Typography>
                                 <div className={classes.fastMoves}>
-                                    <Typography variant='h4'>Fast Moves: </Typography>
                                     {getPokemonMoves(pokemonId)[0].map(fastMove => (
-                                        <Typography key={fastMove} variant='h6'>{fastMove}</Typography>
-                                    ))}
+                                        <Typography key={fastMove} variant='h6' className={classes.fastMove}>{fastMove}</Typography>
+                                        )
+                                    )}
                                 </div>
+                                <Divider style={{ margin: '10px 0' }} />
+                                <Typography variant='h5' style={{ textAlign: 'center' }}>Charge Moves</Typography>
                                 <div className={classes.chargeMoves}>
-                                    <Typography variant='h4'>Charge Moves: </Typography>
                                     {getPokemonMoves(pokemonId)[1].map(chargeMove => (
-                                        <Typography key={chargeMove} variant='h6'>{chargeMove}</Typography>
-                                    ))}
+                                    <Typography key={chargeMove} variant='h6' className={classes.chargeMove}>{chargeMove}</Typography>
+                                    )
+                                    )}
                                 </div>
+                                <Divider style={{ margin: '10px 0' }} />
                             </div>
                             {Object.keys(currentPokemon).length !== 0 && (
                                 <div className={classes.typeCompare}>
-                                    <div className={classes.weakType}>
-                                    <Typography variant='h4'>Weak Against: </Typography>
+                                    <Typography variant='h5' style={{ textAlign: 'center', margin: '15px 0' }}>Weakness</Typography>
+                                    <div className={classes.weakTypes}>
                                         {getPokemonTypeAttributes(currentPokemon)[0].map((weakness, id) => {
                                         let weaknessType;
                                         if (weakness === 'bug') weaknessType = bug;
@@ -151,15 +155,16 @@ const PokemonDetails = () => {
                                         else if (weakness === 'steel') weaknessType = steel;
                                         else if (weakness === 'water') weaknessType = water;
                                         return (<img
-                                            style={{ height: '50px' }}
+                                            style={{ height: '50px', margin: '10px 10px' }}
                                             key={id}
                                             src={weaknessType}
                                             alt={weakness}
                                         />)
                                     })}
                                     </div>
-                                    <div className={classes.effectiveType}>
-                                        <Typography variant='h4'>Super Effective Against: </Typography>
+                                    <Divider style={{ margin: '15px 0' }} />
+                                    <Typography variant='h5' style={{ textAlign: 'center' }}>Super Effective</Typography>
+                                    <div className={classes.effectiveTypes}>
                                                 {getPokemonTypeAttributes(currentPokemon)[1].map((strength, id) => {
                                                     let strengthType;
                                                     if (strength === 'bug') strengthType = bug;
@@ -181,7 +186,7 @@ const PokemonDetails = () => {
                                                     else if (strength === 'steel') strengthType = steel;
                                                     else if (strength === 'water') strengthType = water;
                                                     return (<img
-                                                        style={{ height: '50px' }}
+                                                        style={{ height: '50px', margin: '10px 10px' }}
                                                         key={id}
                                                         src={strengthType}
                                                         alt={strength}
