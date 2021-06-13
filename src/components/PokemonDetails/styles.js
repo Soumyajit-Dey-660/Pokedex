@@ -34,44 +34,89 @@ export default makeStyles((theme) => ({
     },
     pokemonTitle: {
         display: 'flex',
-        justifyContent: 'space-around'
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        margin: '10px 0',
     },
     pokemonBasicDesc: {
         display: 'flex',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        [theme.breakpoints.down('sm')]: {
+            flexWrap: 'wrap',
+            flexDirection: 'column',
+            padding:'10px 0',
+            '&:nth-child(2)': {
+                order: 2
+            }
+        },
+    },
+    pokemonHeight: {
+        padding: '20px 20px'
+    },
+    pokemonWeight: {
+        padding: '20px 20px'
     },
     typeText: {
         display: 'flex',
-        justifyContent: 'space-between'
+        justifyContent: 'space-evenly',
+        textAlign: 'center'
     },
     fastMoves: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        flexWrap: 'wrap',
+        flexFlow: 'row wrap',
+        '&::after': {
+            content: "",
+            flex: 'auto',
+        },
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+        },
     },
     fastMove: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
         padding: '20px 10px',
         margin: '10px 20px',
         background: 'linear-gradient(to right bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1))',
         borderRadius: '2rem',
         textAlign: 'center',
-        flex: 1,
+        flex: '0 1 41%',
+        [theme.breakpoints.down('sm')]: {
+            margin: '10px 10px',
+        },
     },
     chargeMoves: {
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        flexWrap: 'wrap',
+        flexFlow: 'row wrap',
+        '&::after': {
+            content: "",
+            flex: 'auto',
+        },
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+        },
     },
     chargeMove: {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
         padding: '20px 10px',
         margin: '10px 20px',
         background: 'linear-gradient(to right bottom, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.1))',
         borderRadius: '2rem',
         textAlign: 'center',
-        flex: '1 0 41%',
+        flex: '0 1 41%',
+        [theme.breakpoints.down('sm')]: {
+            margin: '10px 10px',
+        },
     },
     weakTypes: {
         display: 'flex',

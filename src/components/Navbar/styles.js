@@ -9,14 +9,15 @@ export default makeStyles((theme) => ({
         borderRadius: 15,
         display: 'flex',
         flexDirection: 'row',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         padding: '10px 10px',
         width: '100%',
+        cursor: 'pointer',
     },
     toolbar: {
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'space-evenly',
         alignItems: 'center'
     },
     menuButton: {
@@ -29,20 +30,22 @@ export default makeStyles((theme) => ({
         [theme.breakpoints.up('sm')]: {
             display: 'block',
         },
+        margin: '10px 30px',
     },
     search: {
+        flexGrow: 5,
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
         backgroundColor: fade(theme.palette.common.white, 0.15),
         '&:hover': {
             backgroundColor: fade(theme.palette.common.white, 0.25),
         },
-        marginLeft: 0,
         width: '100%',
         [theme.breakpoints.up('sm')]: {
             marginLeft: theme.spacing(1),
             width: 'auto',
         },
+        margin: '10px 30px',
     },
     searchIcon: {
         padding: theme.spacing(0, 2),

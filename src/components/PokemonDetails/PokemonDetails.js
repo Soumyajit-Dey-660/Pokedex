@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { getCurrentPokemon } from '../../actions/creators/pokemon';
 import { IMAGE_URL } from '../../constants/apiConstants';
+import movesToType from '../../constants/movesToType';
 import capitalize from '../../utils/capitalize';
 import pokemonMoves from '../../constants/pokemonMoves';
 import typeComparison from '../../constants/typeComparison';
@@ -60,10 +61,20 @@ const PokemonDetails = () => {
         return [allWeaknesses, allStrengths];
     }
 
+    const getCallableMove = move => {
+        move = move.toLowerCase();
+        let formattedMove = '';
+        for (let i = 0; i < move.length; i++) {
+            if (move[i] === ' ') formattedMove += '-';
+            else formattedMove += move[i];
+        }
+        return formattedMove;
+    }
+
     useEffect(() => {
         dispatch(getCurrentPokemon(pokemonId));
     }, [])
-    
+    console.log(currentPokemon);
     return (
         <>
             {isLoading ?
@@ -113,22 +124,100 @@ const PokemonDetails = () => {
                         <Divider style={{ margin: '20px 0' }} />
                         <div className={classes.description}>
                             <div className={classes.moves}>
+                                        {getPokemonMoves(pokemonId)[0] && (
+                                            <div>
                                 <Typography variant='h5' style={{ textAlign: 'center' }}>Fast Moves</Typography>
                                 <div className={classes.fastMoves}>
-                                    {getPokemonMoves(pokemonId)[0].map(fastMove => (
-                                        <Typography key={fastMove} variant='h6' className={classes.fastMove}>{fastMove}</Typography>
-                                        )
+                                    {getPokemonMoves(pokemonId)[0]?.map(fastMove => {
+                                        const formattedFastMove = getCallableMove(fastMove);
+                                        let fastMoveType;
+                                        for (let i = 0; i < movesToType.length; i++) {
+                                            if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'bug') 
+                                                {fastMoveType = bug; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'dragon') 
+                                                {fastMoveType = dragon; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'electric') 
+                                                {fastMoveType = electric; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'fairy') 
+                                                {fastMoveType = fairy; break}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'fighting') 
+                                                {fastMoveType = fighting; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'dark') 
+                                                {fastMoveType = dark; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'fire') 
+                                                {fastMoveType = fire; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'flying') 
+                                                {fastMoveType = flying; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'ghost') 
+                                                {fastMoveType = ghost; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'grass') 
+                                                {fastMoveType = grass; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'ground') 
+                                                {fastMoveType = ground; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'ice') 
+                                                {fastMoveType = ice; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'normal') 
+                                                {fastMoveType = normal; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'poison') 
+                                                {fastMoveType = poison; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'psychic') 
+                                                {fastMoveType = psychic; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'rock') 
+                                                {fastMoveType = rock; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'steel') 
+                                                {fastMoveType = steel; break;}
+                                            else if (movesToType[i].move === formattedFastMove && movesToType[i].type === 'water') 
+                                                {fastMoveType = water; break;}
+                                        }
+                                        return (
+                                            <div key={fastMove} className={classes.fastMove}>
+                                                <img src={fastMoveType} alt={fastMove} style={{ height: '50px' }} />
+                                                <Typography variant='h6' >{fastMove}</Typography>
+                                            </div>
+                                        )}
                                     )}
                                 </div>
                                 <Divider style={{ margin: '10px 0' }} />
+                                </div>
+                            )}
+                                {getPokemonMoves(pokemonId)[1] && (
+                                <div>
                                 <Typography variant='h5' style={{ textAlign: 'center' }}>Charge Moves</Typography>
                                 <div className={classes.chargeMoves}>
-                                    {getPokemonMoves(pokemonId)[1].map(chargeMove => (
-                                    <Typography key={chargeMove} variant='h6' className={classes.chargeMove}>{chargeMove}</Typography>
-                                    )
+                                    {getPokemonMoves(pokemonId)[1]?.map(chargeMove => {
+                                        const formattedChargeMove = getCallableMove(chargeMove);
+                                        let chargeMoveType;
+                                        for (let i = 0; i < movesToType.length; i++) {
+                                            if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'bug') { chargeMoveType = bug; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'dragon') { chargeMoveType = dragon; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'electric') { chargeMoveType = electric; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'fairy') { chargeMoveType = fairy; break }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'fighting') { chargeMoveType = fighting; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'dark') { chargeMoveType = dark; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'fire') { chargeMoveType = fire; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'flying') { chargeMoveType = flying; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'ghost') { chargeMoveType = ghost; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'grass') {  chargeMoveType = grass; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'ground') { chargeMoveType = ground; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'ice') { chargeMoveType = ice; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'normal') { chargeMoveType = normal; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'poison') { chargeMoveType = poison; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'psychic') { chargeMoveType = psychic; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'rock') { chargeMoveType = rock; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'steel') { chargeMoveType = steel; break; }
+                                            else if (movesToType[i].move === formattedChargeMove && movesToType[i].type === 'water') { chargeMoveType = water; break; }
+                                        }
+                                    return (
+                                        <div key={chargeMove} className={classes.chargeMove}>
+                                            <img src={chargeMoveType} alt={chargeMove} style={{ height: '50px' }} />
+                                            <Typography variant='h6'>{chargeMove}</Typography>
+                                        </div>
+                                    )}
                                     )}
                                 </div>
                                 <Divider style={{ margin: '10px 0' }} />
+                                </div>)
+                            }
                             </div>
                             {Object.keys(currentPokemon).length !== 0 && (
                                 <div className={classes.typeCompare}>

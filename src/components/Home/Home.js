@@ -38,9 +38,11 @@ const Home = () => {
                                     <Pokedex pokemons={pokemonsPageWise} /> :
                                     <Pokedex pokemons={filteredPokemons} />
                                 }
-                                <Paper className={classes.pagination}>
-                                    <Pagination page={page} />
-                                </Paper>
+                                {filteredPokemons?.results.length === 0 &&
+                                    <Paper className={classes.pagination}>
+                                        <Pagination page={page} />
+                                    </Paper>
+                                }
                             </Container>
                         </Grow>
                     )
