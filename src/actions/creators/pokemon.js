@@ -1,4 +1,6 @@
-import { START_LOADING, END_LOADING, FETCH_POKEMON_PAGE_WISE, FETCH_ALL_POKEMONS, FETCH_POKEMON_BY_SEARCH, FETCH_CURRENT_POKEMON } from '../types/pokemon';
+import { START_LOADING, END_LOADING, FETCH_POKEMON_PAGE_WISE,
+        FETCH_ALL_POKEMONS, FETCH_POKEMON_BY_SEARCH,
+        FETCH_CURRENT_POKEMON, SET_FILTERED_POKEMON } from '../types/pokemon';
 import * as api from '../../api';
 
 export const getPokemons = page => async dispatch => {
@@ -36,4 +38,8 @@ export const getCurrentPokemon = pokemonId => async dispatch => {
     } catch(error) {
         console.log(error);
     }
+}
+
+export const setFilteredPokemon = () => dispatch => {
+    dispatch({ type: SET_FILTERED_POKEMON });
 }

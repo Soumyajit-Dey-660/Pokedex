@@ -13,7 +13,6 @@ export default makeStyles((theme) => ({
         alignItems: 'center',
         padding: '10px 10px',
         width: '100%',
-        cursor: 'pointer',
     },
     toolbar: {
         display: 'flex',
@@ -31,6 +30,13 @@ export default makeStyles((theme) => ({
             display: 'block',
         },
         margin: '10px 30px',
+    },
+    backButton: {
+        display: 'block',
+        cursor: 'pointer',
+        [theme.breakpoints.up('sm')]: {
+            display: 'none',
+        },
     },
     search: {
         flexGrow: 5,

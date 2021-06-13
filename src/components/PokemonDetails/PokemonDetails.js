@@ -74,7 +74,7 @@ const PokemonDetails = () => {
     useEffect(() => {
         dispatch(getCurrentPokemon(pokemonId));
     }, [])
-    console.log(currentPokemon);
+    
     return (
         <>
             {isLoading ?

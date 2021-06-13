@@ -1,4 +1,6 @@
-import { START_LOADING, END_LOADING, FETCH_POKEMON_PAGE_WISE, FETCH_ALL_POKEMONS, FETCH_POKEMON_BY_SEARCH, FETCH_CURRENT_POKEMON } from '../actions/types/pokemon';
+import { START_LOADING, END_LOADING, FETCH_POKEMON_PAGE_WISE,
+        FETCH_ALL_POKEMONS, FETCH_POKEMON_BY_SEARCH,
+    FETCH_CURRENT_POKEMON, SET_FILTERED_POKEMON } from '../actions/types/pokemon';
 
 const initialState = {
     isLoading: false,
@@ -42,6 +44,11 @@ export const pokemonReducer = (state = initialState, action) => {
             return {
                 ...state,
                 currentPokemon: action.payload
+            }
+        case SET_FILTERED_POKEMON:
+            return {
+                ...state,
+                filteredPokemons: {results: []}
             }
         default: return state;
     }
